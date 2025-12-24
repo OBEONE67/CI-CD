@@ -1,0 +1,40 @@
+name: Frontend CI (Vue.js)
+
+on:
+  push:
+    branches: [main, demo]
+    paths:
+      - "my-ci-cd-fontend/**"
+  pull_request:
+    branches: [main, demo]
+    paths:
+      - "my-ci-cd-fontend/**"
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+          cache-dependency-path: "my-ci-cd-fontend/pnpm-lock.yaml"
+
+      - name: Install dependencies
+        # ใช้ --no-frozen-lockfile หากมีการอัปเดตไฟล์ lock
+        working-directory: ./my-ci-cd-fontend
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Run Unit Tests
+        working-directory: ./my-ci-cd-fontend
+        run: pnpm run test:unit
