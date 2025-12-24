@@ -1,7 +1,7 @@
 <template>
   <div class="welcome-container">
     <div class="welcome-header">
-      <h1>🚀 Frontend Application</h1>
+      <h1>🚀 Frontend </h1>
       <p class="subtitle">Connected to Spring Boot Backend</p>
     </div>
     
