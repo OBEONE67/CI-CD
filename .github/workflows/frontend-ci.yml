@@ -31,12 +31,10 @@ jobs:
           cache-dependency-path: "my-ci-cd-fontend/pnpm-lock.yaml"
 
       - name: Install dependencies
-        working-directory: ./my-ci-cd-fontend # ตรวจสอบตัวสะกด fontend ให้ดีครับ
-        run: |
-          pnpm install --no-frozen-lockfile --prefer-offline
-          # เพิ่มคำสั่งตรวจสอบว่า vitest มาจริงไหม
-          ./node_modules/.bin/vitest --version
+        working-directory: ./my-ci-cd-fontend
+        run: pnpm install --no-frozen-lockfile
 
       - name: Run Unit Tests
         working-directory: ./my-ci-cd-fontend
+        # กลับมาใช้คำสั่งเดิม เพราะ pnpm จะหา vitest เจอเองหลังจากติดตั้งในข้อ 1 ครับ
         run: pnpm run test:unit
