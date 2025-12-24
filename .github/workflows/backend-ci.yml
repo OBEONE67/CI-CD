@@ -1,0 +1,25 @@
+name: Backend CI (Spring Boot)
+
+on:
+  push:
+    branches: [ main, master ] # รันเมื่อมีการส่งโค้ดเข้า branch หลัก
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest # ใช้เครื่อง Linux ของ GitHub ในการรัน
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21 # ต้องเป็นเวอร์ชัน 21 เพื่อให้เหมือนเครื่องคุณที่ Build ผ่าน
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Build and Test with Maven
+        run: ./mvnw clean test # สั่งรันคำสั่งเดียวกับที่คุณเพิ่งรันสำเร็จ
