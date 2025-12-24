@@ -30,3 +30,4 @@ jobs:
           cd my-ci-cd-fontend
           pnpm install --no-frozen-lockfile
           pnpm run test:unit
+        env:
