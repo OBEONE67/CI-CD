@@ -13,7 +13,7 @@ public class HelloController {
      * Endpoint สำหรับการเรียก GET ที่ Path /api/hello
      * @return ข้อความต้อนรับ
      */
-    @GetMapping("/api/hello")
+    @GetMapping("/api/")
     public String getHelloMessage() {
         return "Hello from Spring Boot!";
     }
