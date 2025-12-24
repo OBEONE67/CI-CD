@@ -1,0 +1,3 @@
+com\example\my_ci_cd_backend\controller\HelloController.class
+com\example\my_ci_cd_backend\MyCiCdBackendApplication.class
+com\example\my_ci_cd_backend\config\CorsConfig.class
