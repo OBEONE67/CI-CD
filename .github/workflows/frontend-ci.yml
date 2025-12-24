@@ -4,29 +4,24 @@ on:
   push:
     branches: ["demo"]
     paths:
-      - "my-ci-cd-fontend/**"
+      - "my-ci-cd-fontend/**" # ตรวจสอบชื่อโฟลเดอร์ "fontend" ให้ตรงกับใน Git
 
 jobs:
-  build-and-test:
+  test-frontend:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      # 1. ติดตั้ง Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-
-      # 2. ติดตั้ง pnpm (ห้ามข้ามขั้นตอนนี้เด็ดขาด)
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
-
-      # 3. ติดตั้ง Dependencies และรัน Test ในคำสั่งเดียวเพื่อป้องกันหาไฟล์ไม่เจอ
       - name: Install and Test
         run: |
           cd my-ci-cd-fontend
           pnpm install --no-frozen-lockfile
-          pnpm run test:unit
+          pnpm run test:unit # รัน Vitest เพื่อตรวจสอบความถูกต้อง
+  
