@@ -37,4 +37,4 @@ jobs:
 
       - name: Run Unit Tests
         working-directory: ./my-ci-cd-fontend
-        run: pnpm run test:unit
+        run: pnpm run test:unit --coverage
