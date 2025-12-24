@@ -16,7 +16,7 @@ class MyCiCdBackendApplicationTests {
 		String result = controller.getHelloMessage();
 
 		// 3. เช็คผลลัพธ์ว่าตรงกับที่เขียนไว้ไหม
-		assert(result.equals("Hello from Spring Boot!"));
+		assert(result.equals("Hello from Spring Boot!!"));
 	}
 	void contextLoads() {
 	}
