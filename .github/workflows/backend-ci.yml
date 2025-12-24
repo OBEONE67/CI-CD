@@ -21,7 +21,7 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
           # บอกทางไปหา pom.xml เพื่อทำระบบ Cache
-          cache-dependency-path: 'my-ci-cd-backend/pom.xml'
+          cache-dependency-path: 'CI-CD/my-ci-cd-backend/pom.xml'
 
       - name: Build and Test with Maven
         # สำคัญมาก: ต้องระบุโฟลเดอร์ที่จะรันคำสั่ง
