@@ -7,6 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 class MyCiCdBackendApplicationTests {
 
 	@Test
+	void  HelloController(){
+
+	}
 	void contextLoads() {
 	}
 
