@@ -4,7 +4,7 @@ on:
   push:
     branches: [main, demo]
     paths:
-      - "my-ci-cd-fontend/**" # สังเกตการสะกดชื่อโฟลเดอร์ให้ตรงกับของคุณ
+      - "my-ci-cd-fontend/**"
   pull_request:
     branches: [main, demo]
     paths:
@@ -21,19 +21,20 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 8 # หรือเวอร์ชันที่คุณใช้งานอยู่
+          version: 8
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20" # เวอร์ชันแนะนำสำหรับ Vite/Vue 3
+          node-version: "20"
           cache: "pnpm"
           cache-dependency-path: "my-ci-cd-fontend/pnpm-lock.yaml"
 
       - name: Install dependencies
+        # ใช้ --no-frozen-lockfile หากมีการอัปเดตไฟล์ lock
         working-directory: ./my-ci-cd-fontend
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
 
       - name: Run Unit Tests
         working-directory: ./my-ci-cd-fontend
-        run: pnpm run test:unit # หรือคำสั่ง test ใน package.json ของคุณ
+        run: pnpm run test:unit
