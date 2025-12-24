@@ -1,41 +1,32 @@
-name: Frontend CI (Vue.js)
+name: Frontend CI
 
 on:
   push:
-    branches: [main, demo]
-    paths:
-      - "my-ci-cd-fontend/**"
-  pull_request:
-    branches: [main, demo]
+    branches: ["demo"]
     paths:
       - "my-ci-cd-fontend/**"
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
+      # 1. ติดตั้ง Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # 2. ติดตั้ง pnpm (ห้ามข้ามขั้นตอนนี้เด็ดขาด)
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "pnpm"
-          cache-dependency-path: "my-ci-cd-fontend/pnpm-lock.yaml"
-
-      - name: Install dependencies
+      # 3. ติดตั้ง Dependencies และรัน Test ในคำสั่งเดียวเพื่อป้องกันหาไฟล์ไม่เจอ
+      - name: Install and Test
         run: |
           cd my-ci-cd-fontend
-          pnpm install --no-frozen-lockfile # ติดตั้ง Library ให้ครบถ้วน
-
-      - name: Run Unit Test
-        run: |
-          cd my-ci-cd-fontend
-          pnpm run test:unit # รัน Test ในโฟลเดอร์ที่มี vitest อยู่
+          pnpm install --no-frozen-lockfile
+          pnpm run test:unit
