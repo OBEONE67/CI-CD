@@ -31,10 +31,10 @@ jobs:
           cache-dependency-path: "my-ci-cd-fontend/pnpm-lock.yaml"
 
       - name: Install dependencies
-        # ใช้ --no-frozen-lockfile หากมีการอัปเดตไฟล์ lock
         working-directory: ./my-ci-cd-fontend
         run: pnpm install --no-frozen-lockfile
 
       - name: Run Unit Tests
         working-directory: ./my-ci-cd-fontend
+        # กลับมาใช้คำสั่งเดิม เพราะ pnpm จะหา vitest เจอเองหลังจากติดตั้งในข้อ 1 ครับ
         run: pnpm run test:unit
