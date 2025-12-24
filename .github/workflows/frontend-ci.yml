@@ -31,8 +31,9 @@ jobs:
           cache-dependency-path: "my-ci-cd-fontend/pnpm-lock.yaml"
 
       - name: Install dependencies
-        working-directory: ./my-ci-cd-fontend
-        run: pnpm install --no-frozen-lockfile
+        run: |
+          cd my-ci-cd-fontend  # ต้องระบุชื่อโฟลเดอร์ frontend ของคุณให้ถูก
+          pnpm install --no-frozen-lockfile
 
       - name: Run Unit Tests
         working-directory: ./my-ci-cd-fontend
