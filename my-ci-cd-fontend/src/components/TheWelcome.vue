@@ -2,7 +2,7 @@
   <div class="welcome-container">
     <div class="welcome-header">
       <h1>🚀 Frontend Application</h1>
-      <p class="subtitle">Connected to Spring Boot Backend</p
+      <p class="subtitle">Connected to Spring Boot Backend</p>
     </div>
     
     <div class="welcome-content">
