@@ -24,5 +24,10 @@
     "jsdom": "^27.3.0",
     "vite": "^7.2.4",
     "vite-plugin-vue-devtools": "^8.0.5"
+  },
+  "pnpm": {
+    "overrides": {
+      "rollup": "^4.54.0"
+    }
   }
 }
