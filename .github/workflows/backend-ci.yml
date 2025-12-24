@@ -2,24 +2,30 @@ name: Backend CI (Spring Boot)
 
 on:
   push:
-    branches: [ main, master ] # รันเมื่อมีการส่งโค้ดเข้า branch หลัก
+    branches: [ main, demo ] # ให้รันทั้งบน main และ demo ตามที่คุณต้องการ
   pull_request:
-    branches: [ main, master ]
+    branches: [ main, demo ]
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest # ใช้เครื่อง Linux ของ GitHub ในการรัน
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4 # *** ขั้นตอนนี้ห้ามลืมเด็ดขาด เพื่อดึงโค้ดออกมา ***
 
-      - name: Set up JDK 21 # ต้องเป็นเวอร์ชัน 21 เพื่อให้เหมือนเครื่องคุณที่ Build ผ่าน
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: '21'
+          java-version: '21' # ใช้เวอร์ชัน 21 ตามที่เครื่องคุณรันผ่าน
           distribution: 'temurin'
           cache: 'maven'
+          # บอกหุ่นยนต์ว่าไฟล์ pom.xml อยู่ในโฟลเดอร์ย่อย
+          cache-dependency-path: 'my-ci-cd-backend/pom.xml'
 
       - name: Build and Test with Maven
-        run: ./mvnw clean test # สั่งรันคำสั่งเดียวกับที่คุณเพิ่งรันสำเร็จ
+        # *** สำคัญมาก: ต้องระบุโฟลเดอร์ที่จะรันคำสั่ง ***
+        working-directory: ./my-ci-cd-backend
+        run: |
+          chmod +x mvnw
+          ./mvnw clean test # รันคำสั่งเดียวกับที่สำเร็จในเครื่อง
