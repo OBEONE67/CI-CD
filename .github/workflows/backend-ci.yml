@@ -2,7 +2,7 @@ name: Backend CI (Spring Boot)
 
 on:
   push:
-    branches: [ main, demo ]
+    branches: [ main, demo ] # ให้รันเมื่อ Push เข้าทั้ง main และ demo
   pull_request:
     branches: [ main, demo ]
 
@@ -11,24 +11,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # ขั้นตอนที่ 1: ต้องดึงโค้ดออกมาก่อนเสมอ (สำคัญมาก!)
+      # 1. ดึงโค้ดออกมา (ถ้าไม่มีขั้นตอนนี้ หุ่นยนต์จะหาไฟล์อะไรไม่เจอเลย)
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # ขั้นตอนที่ 2: ติดตั้ง Java 21 (หลังจากดึงโค้ดมาแล้ว จะหา pom.xml เจอครับ)
+      # 2. ติดตั้ง Java 21 และระบุที่อยู่ pom.xml เพื่อทำระบบ Cache
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: '21' # ตรงกับที่รันผ่านในเครื่อง
+          java-version: '21'
           distribution: 'temurin'
           cache: 'maven'
-          # ระบุ Path ไปยัง pom.xml ให้ถูกต้องตามโครงสร้าง Monorepo
+          # บอก GitHub ว่าไฟล์ตั้งค่าอยู่ที่ไหนใน Monorepo
           cache-dependency-path: 'my-ci-cd-backend/pom.xml'
 
-      # ขั้นตอนที่ 3: สั่งรันคำสั่ง Test
+      # 3. สั่งรัน Maven Test (ต้องระบุ working-directory)
       - name: Build and Test with Maven
-        # ต้องบอกให้หุ่นยนต์เดินเข้าไปในโฟลเดอร์ที่มีไฟล์ mvnw
+        # สั่งให้หุ่นยนต์ "เดินเข้าห้อง" backend ก่อนรันคำสั่ง
         working-directory: ./my-ci-cd-backend
         run: |
           chmod +x mvnw
-          ./mvnw clean test
+          ./mvnw clean test # รันคำสั่งเดียวกับที่ BUILD SUCCESS ในเครื่องคุณ
