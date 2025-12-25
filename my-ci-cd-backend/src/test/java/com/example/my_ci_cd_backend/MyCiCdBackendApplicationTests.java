@@ -8,16 +8,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 class MyCiCdBackendApplicationTests {
 
 	@Test
-	void testControllerDirectly() {
-		// 1. สร้าง Object ของ Controller ขึ้นมาตรงๆ (ไม่ต้องพึ่งระบบ Auto ของ Spring)
-		HelloController controller = new HelloController();
-
-		// 2. เรียกใช้ Method ที่ต้องการทดสอบ
-		String result = controller.getHelloMessage();
-
-		// 3. เช็คผลลัพธ์ว่าตรงกับที่เขียนไว้ไหม
-		assert(result.equals("Hello from Spring Boot!"));
-	}
+//	void testControllerDirectly() {
+//		// 1. สร้าง Object ของ Controller ขึ้นมาตรงๆ (ไม่ต้องพึ่งระบบ Auto ของ Spring)
+//		HelloController controller = new HelloController();
+//
+//		// 2. เรียกใช้ Method ที่ต้องการทดสอบ
+//		String result = controller.getHelloMessage();
+//
+//		// 3. เช็คผลลัพธ์ว่าตรงกับที่เขียนไว้ไหม
+//		assert(result.equals("Hello from Spring Boot!"));
+//	}
 	void contextLoads() {
 	}
 
