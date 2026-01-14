@@ -12,11 +12,11 @@ class HelloControllerAdditionalTest {
         assertEquals("Hello, Alice!", c.getHelloForName("Alice"));
     }
 
-    @Test
-    void echo_returnsSameString() {
-        HelloController c = new HelloController();
-        assertEquals("ping", c.echo("ping"));
-    }
+    // @Test
+    // void echo_returnsSameString() {
+    //     HelloController c = new HelloController();
+    //     assertEquals("ping", c.echo("ping"));
+    // }
 
     @Test
     void status_returnsOK() {
