@@ -1,0 +1,6 @@
+target/
+.m2/
+.git
+**/node_modules
+**/*.log
+*.tmp
