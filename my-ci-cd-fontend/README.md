@@ -1,11 +1,13 @@
 # my-ci-cd-frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+Vue 3 + Vite application with automated CI/CD pipeline for Docker Hub.
 
 ## CI/CD Pipeline
+
 - Automated testing with Vitest
-- Docker containerization  
-- Auto-deploy to Docker Hub
+- Docker containerization
+- Automatic deployment to Docker Hub
+- GitHub Actions integration
 
 ## Recommended IDE Setup
 
@@ -14,7 +16,7 @@ This template should help get you started developing with Vue 3 in Vite.
 ## Recommended Browser Setup
 
 - Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
+  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
   - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
 - Firefox:
   - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
@@ -41,5 +43,3 @@ pnpm dev
 ```sh
 pnpm build
 ```
-
-

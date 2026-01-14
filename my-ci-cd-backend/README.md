@@ -1,10 +1,12 @@
 # My CI/CD Backend
 
-Spring Boot application with CI/CD pipeline.
+Spring Boot application with automated CI/CD pipeline for Docker Hub.
 
 ## Features
+
 - Automated testing with Maven
 - Docker containerization
-- Auto-deploy to Docker Hub
+- Automatic deployment to Docker Hub
+- GitHub Actions integration
 
 Last updated: 2026-01-14
