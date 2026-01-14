@@ -38,6 +38,10 @@ npm run dev -- --host  # เริ่มที่พอร์ต 5173
 
 ```bash
 docker-compose up -d
+## การรันด้วย Docker Compose
+
+```bash
+docker-compose up --build
 ```
 
 - Frontend: http://localhost:5173
@@ -82,6 +86,9 @@ docker-compose up -d
 docker run -p 8080:8080 obeone67/my-ci-cd-backend:latest
 docker run -p 5173:5173 obeone67/my-ci-cd-frontend:latest
 ```
+- Dockerfile backend: [my-ci-cd-backend/Dockerfile](my-ci-cd-backend/Dockerfile)
+- Dockerfile frontend: [my-ci-cd-fontend/Dockerfile](my-ci-cd-fontend/Dockerfile)
+- Workflow อธิบายการ deploy อัตโนมัติผ่าน Docker Hub + SSH ดู [my-ci-cd-backend/DEPLOY.md](my-ci-cd-backend/DEPLOY.md)
 
 ## หมายเหตุ
 
