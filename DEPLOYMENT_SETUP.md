@@ -3,6 +3,7 @@
 ## ✅ สิ่งที่ได้ทำการอัปเดต
 
 เพิ่ม Deploy Job ใน GitHub Actions workflows สำหรับ:
+
 - **Backend CI/CD**: [.github/workflows/backend-ci.yml](.github/workflows/backend-ci.yml)
 - **Frontend CI/CD**: [.github/workflows/frontend-ci.yml](.github/workflows/frontend-ci.yml)
 
@@ -24,11 +25,13 @@
 3. คลิก **New repository secret** และเพิ่ม Secrets ต่อไปนี้:
 
 #### Secret ที่ 1: DOCKER_USERNAME
+
 - **Name**: `DOCKER_USERNAME`
 - **Value**: ชื่อผู้ใช้ Docker Hub ของคุณ (เช่น `yourname`)
 - คลิก **Add secret**
 
 #### Secret ที่ 2: DOCKER_PASSWORD
+
 - **Name**: `DOCKER_PASSWORD`
 - **Value**: Access Token ที่คัดลอกไว้จากขั้นตอนที่ 1
 - คลิก **Add secret**
@@ -36,12 +39,14 @@
 ### 3. ตรวจสอบ Secrets ที่เพิ่มแล้ว
 
 หลังจากเพิ่มเสร็จ ควรเห็น Secrets 2 ตัว:
+
 - ✅ `DOCKER_USERNAME`
 - ✅ `DOCKER_PASSWORD`
 
 ## 🔄 การทำงานของ Pipeline
 
 ### Backend CI/CD Flow
+
 ```
 1. Push code → branch "demo"
 2. Job: build-and-test
@@ -55,6 +60,7 @@
 ```
 
 ### Frontend CI/CD Flow
+
 ```
 1. Push code → branch "demo"
 2. Job: test-frontend
@@ -90,18 +96,21 @@
 ## 📦 การใช้งาน Docker Images
 
 Pull และรัน backend:
+
 ```bash
 docker pull <your-dockerhub-username>/my-ci-cd-backend:latest
 docker run -p 8080:8080 <your-dockerhub-username>/my-ci-cd-backend:latest
 ```
 
 Pull และรัน frontend:
+
 ```bash
 docker pull <your-dockerhub-username>/my-ci-cd-frontend:latest
 docker run -p 5173:5173 <your-dockerhub-username>/my-ci-cd-frontend:latest
 ```
 
 หรือใช้ docker-compose (อัปเดต [docker-compose.yml](docker-compose.yml) ให้ชื่อ images):
+
 ```yaml
 services:
   backend:
@@ -120,14 +129,17 @@ services:
 ## 🛠️ Troubleshooting
 
 ### ❌ Error: "denied: requested access to the resource is denied"
+
 - ตรวจสอบว่า `DOCKER_USERNAME` และ `DOCKER_PASSWORD` ถูกต้อง
 - ตรวจสอบว่า Docker Hub token ยังไม่หมดอายุ
 
 ### ❌ Error: "repository does not exist"
+
 - Repository จะถูกสร้างอัตโนมัติในครั้งแรกที่ push
 - ตรวจสอบว่าชื่อ image ตรงกับ username
 
 ### ⚠️ Build ช้า
+
 - Pipeline ใช้ Docker layer caching แล้ว
 - Build ครั้งแรกจะช้า แต่ครั้งถัดไปจะเร็วขึ้น
 
