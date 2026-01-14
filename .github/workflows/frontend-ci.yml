@@ -1,4 +1,4 @@
-name: Frontend CI
+name: Frontend CI/CD
 
 on:
   push:
@@ -24,4 +24,32 @@ jobs:
           cd my-ci-cd-fontend
           pnpm install --no-frozen-lockfile
           pnpm run test:unit # รัน Vitest เพื่อตรวจสอบความถูกต้อง
+
+  deploy:
+    needs: test-frontend
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/demo' && github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./my-ci-cd-fontend
+          file: ./my-ci-cd-fontend/Dockerfile
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/my-ci-cd-frontend:latest
+            ${{ secrets.DOCKER_USERNAME }}/my-ci-cd-frontend:${{ github.sha }}
+          cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/my-ci-cd-frontend:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/my-ci-cd-frontend:buildcache,mode=max
   
