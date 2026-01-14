@@ -9,12 +9,17 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    // --- เพิ่มส่วนนี้เข้าไปค่ะ ---
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
+      // กำหนด threshold ให้ต้องผ่าน 70% ขึ้นไป
+      thresholds: {
+        statements: 70,
+        branches: 70,
+        functions: 70,
+        lines: 70
+      }
     },
-    // ---------------------------
   },
   plugins: [
     vue(),

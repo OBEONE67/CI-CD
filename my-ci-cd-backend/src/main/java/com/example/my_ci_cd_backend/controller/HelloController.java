@@ -34,11 +34,6 @@ public class HelloController {
         return "OK";
     }
 
-    @GetMapping("/api/ping")
-    public String ping() {
-        return "pong";
-    }
-
     @GetMapping("/api/random")
     public int randomInt() {
         return new java.util.Random().nextInt(101); // 0-100
