@@ -15,7 +15,7 @@ class HelloControllerAdditionalTest {
     @Test
     void echo_returnsSameString() {
         HelloController c = new HelloController();
-        assertEquals("ping", c.echo("ping"));
+        assertEquals("ping", c.echo("pong"));
     }
 
     @Test
