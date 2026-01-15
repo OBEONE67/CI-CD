@@ -1,8 +1,6 @@
 services:
   backend:
-    build:
-      context: ./my-ci-cd-backend
-      dockerfile: Dockerfile
+    image: obeone67/my-ci-cd-backend:latest
     ports:
       - "8080:8080"
     environment:
@@ -12,9 +10,7 @@ services:
       - ci-cd-network
 
   frontend:
-    build:
-      context: ./my-ci-cd-fontend
-      dockerfile: Dockerfile
+    image: obeone67/my-ci-cd-frontend:latest
     ports:
       - "5173:5173"
     container_name: ci-cd-frontend
