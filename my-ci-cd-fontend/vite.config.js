@@ -11,7 +11,7 @@ export default defineConfig({
     environment: 'jsdom',
     coverage: {
       provider: 'v8',
-      reporter: ['text', 'json', 'html'],
+      reporter: ['text', 'json', 'html', 'json-summary'],
       // กำหนด threshold ให้ต้องผ่าน 70% ขึ้นไป
       thresholds: {
         statements: 70,

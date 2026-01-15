@@ -24,8 +24,8 @@ jobs:
           cd my-ci-cd-fontend
           pnpm install --no-frozen-lockfile
           pnpm run coverage
-          # ตรวจสอบ coverage จากไฟล์ coverage/coverage-final.json
-          COVERAGE=$(node -e "const c=require('./coverage/coverage-final.json');const s=c.total.statements.pct;const b=c.total.branches.pct;const f=c.total.functions.pct;const l=c.total.lines.pct;if(s<70||b<70||f<70||l<70){process.exit(1)}")
+          # ตรวจสอบ coverage จากไฟล์ coverage/coverage-summary.json (มีค่า total)
+          COVERAGE=$(node -e "const c=require('./coverage/coverage-summary.json');const s=c.total.statements.pct;const b=c.total.branches.pct;const f=c.total.functions.pct;const l=c.total.lines.pct;if(s<70||b<70||f<70||l<70){process.exit(1)}")
           echo "Frontend coverage check passed."
 
   deploy:
