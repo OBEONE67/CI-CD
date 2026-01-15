@@ -16,11 +16,11 @@ jobs:
         with:
           java-version: "21"
           distribution: "temurin"
-      - name: Build with Maven
+      - name: Build with Maven and Check Coverage
         run: |
           cd my-ci-cd-backend
           chmod +x mvnw
-          ./mvnw clean test # รัน Build และ Unit Test พร้อมกัน
+          ./mvnw clean verify # verify จะ fail ถ้า coverage ต่ำกว่า 70% ตาม pom.xml
 
   deploy:
     needs: build-and-test
